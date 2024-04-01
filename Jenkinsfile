@@ -6,14 +6,6 @@ pipeline {
   }
 
   stages {
-    // stage('Prepare Environment') {
-    //   steps {
-    //     script {
-    //       env.REPO_URL = 'https://github.com/<YourGitHubUsername>/maven-samples-A6.git'
-    //     }
-    //   }
-    // }
-
     stage('Grab Repo') {
       steps {
         git(url: 'https://github.com/FaresAT/maven-samples-A6.git', branch: 'master')
@@ -23,9 +15,9 @@ pipeline {
     stage('Checkout and Test Initial Commit') {
       steps {
         script {
-          sh 'mvn clean test'
+          sh 'git checkout 198644632661c67b6c32f59e9047c11a70685e15'
           try {
-              sh '${MAVEN_HOME}/bin/mvn clean test'
+              sh 'mvn clean test'
           } catch (Exception e) {
               echo "Expected failure"
           }
